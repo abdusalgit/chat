@@ -1,0 +1,428 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --moderate-blue: hsl(238, 40%, 52%);
+    --soft-red: hsl(358, 79%, 66%);
+    --light-grayish-blue: hsl(239, 57%, 85%);
+    --pale-red: hsl(357, 100%, 86%);
+    --dark-blue: hsl(212, 24%, 26%);
+    --grayish-blue: hsl(211, 10%, 45%);
+    --light-gray: hsl(223, 19%, 93%);
+    --very-light-gray: hsl(228, 33%, 97%);
+    --white: hsl(0, 0%, 100%);
+}
+
+body {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+.overlay {
+    background: #000;
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .5;
+    z-index: 1;
+}
+
+.hide {
+    display: none;
+}
+
+.confirm-modal {
+    background-color: var(--white);
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.confirm-modal h2 {
+    color: var(--dark-blue);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.confirm-modal p {
+    padding: 20px 0;
+    line-height: 1.7;
+    color: var(--grayish-blue);
+}
+
+.confirm, .cancel {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    color: var(--white);
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.confirm {
+    background-color: var(--soft-red);
+}
+
+.confirm:hover {
+    background-color: var(--pale-red);
+}
+
+.cancel {
+    background-color: var(--grayish-blue);
+}
+
+.cancel:hover {
+    background-color: var(--moderate-blue);
+}
+
+.comments-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    margin: 30px 20px;
+}
+
+.comment, .reply {
+    background-color: var(--white);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.reply, .reply-comment_container, .edit-reply_container {
+    margin-left: 20px;
+    position: relative;
+}
+
+.reply .comment-info {
+    padding: 0 0 15px;
+}
+
+.reply .comment-options {
+    padding: 15px 0 0;
+}
+
+.reply::before, .reply-comment_container::before, .edit-reply_container::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    background-color: #ddd;
+    top: 0;
+    left: -20px;
+    height: 110%;
+}
+
+.reply-comment_container::before, .edit-reply_container::before {
+    height: 115%;
+}
+
+.reply:last-of-type::before, .edit-reply_container::before {
+    height: 100%;
+}
+
+
+.comment-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+}
+
+.Username {
+    text-decoration: none;
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+.timestamp {
+    color: var(--grayish-blue);
+}
+
+.user-reply_to {
+    text-decoration: none;
+    color: var(--moderate-blue);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.comment-content, .comment-content_container {
+    padding: 20px 0;
+    color: var(--grayish-blue);
+    line-height: 1.5;
+}
+
+.comment-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-points {
+    background-color: var(--light-gray);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: "Rubik", sans-serif;
+}
+
+.more-btn i, .minus-btn i {
+    color: var(--light-grayish-blue);
+}
+
+.more-btn i:hover, .minus-btn i:hover {
+    color: var(--moderate-blue);
+}
+
+.points {
+    color: var(--moderate-blue);
+    font-weight: 600;
+    padding: 0 10px;
+}
+
+.reply-btn {
+    color: var(--moderate-blue);
+    font-weight: 500;
+    flex-direction: row-reverse;
+    display: flex;
+}
+
+.reply-btn:hover, .edit-btn:hover {
+    color: var(--light-grayish-blue);
+}
+
+
+.delete-btn, .edit-btn {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.reply-btn i, .delete-btn i, .edit-btn i {
+    margin-right: 5px;
+}
+
+.your-username {
+    background-color: var(--moderate-blue);
+    padding: 4px 7px;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 0.8rem;
+    border-radius: 2px;
+}
+
+.delete-btn {
+    color: var(--soft-red);
+    font-weight: 500;
+}
+
+.delete-btn:hover {
+    color: var(--pale-red);
+}
+
+.edit-btn {
+    color: var(--moderate-blue);
+    font-weight: 500;
+}
+
+.your-options {
+    display: flex;
+}
+
+.new-comment_container, .reply-comment_container, .edit-comment_container, .edit-reply_container {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.edit-comment_container, .edit-reply_container {
+    margin-bottom: 20px;
+}
+
+.new-comment_container {
+    order: 2;
+}
+
+.reply-comment_container {
+    margin-top: -15px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+.new-comment_container textarea, .reply-comment_container textarea, .edit-comment_container textarea, .edit-reply_container textarea {
+    border: 1px solid #ddd;
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    padding: 15px 20px;
+    font-family: "Rubik", sans-serif;
+    height: 110px;
+    resize: none;
+    cursor: pointer;
+}
+
+.user-options {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 5px;
+    align-items: center;
+}
+
+.send-btn {
+    background-color: var(--moderate-blue);
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    .confirm-modal {
+        width: 380px;
+    }
+
+    .comment {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: relative;
+    }
+
+    .comment-info, .comment-content, .comment-content_container {
+        width: 90%;
+    }
+
+    .comment-info {
+        padding-top: 20px;
+    }
+
+    .comment-content, .comment-content_container {
+        padding: 10px 0 20px;
+    }
+
+    .reply .comment-content_container, .reply .comment-info {
+        margin-left: 70px;
+    }
+
+    .comment-points {
+        display: flex;
+        flex-direction: column;
+        height: 90px;
+        justify-content: space-around;
+        padding: 4px 5px;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .reply-btn, .your-options {
+        position: absolute;
+        top: 40px;
+        display: flex;
+        right: 20px;
+    }
+
+    .reply .comment-options .reply-btn, .reply .comment-options .your-options {
+        top: 20px;
+    }
+
+    .reply-comment_container {
+        margin-left: 20px;
+    }
+
+    .reply::before, .reply-comment_container::before {
+        height: 115%;
+    }
+    
+    .new-comment_container, .reply-comment_container, .edit-reply_container {
+        position: relative;
+    }
+
+    .new-comment_container textarea, .reply-comment_container textarea {
+        width: 71%;
+        margin-left: 60px;
+    }
+
+    .edit-reply_container textarea {
+        width: 70%;
+        margin-left: 60px;
+    }
+
+    .new-comment_container .user-avatar, .reply-comment_container .user-avatar, .edit-reply_container .user-avatar {
+        position: absolute;
+        top: 20px;
+        left: 25px;
+    }
+
+    .send-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 15vw;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .comments-container, .new-comment_container {
+        width: 800px;
+    }
+
+    .new-comment_container textarea {
+        width: 590px;
+    }
+
+    .send-btn {
+        width: 100px;
+    }
+
+    .new-comment_container textarea, .reply-comment_container textarea {
+        width: 76%;
+        margin-left: 60px;
+    }
+
+    .edit-reply_container textarea {
+        width: 75%;
+        margin-left: 60px;
+    }
+}
